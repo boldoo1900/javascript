@@ -1,0 +1,15 @@
+
+
+<script type="text/javascript">
+
+	var myDate = new Date('2019/01/01');
+	
+	//console.log(myDate.getFullYear());
+	//console.log(myDate.getMonth());
+	//console.log(myDate.getDate());
+	
+	var myDateString = ('0' + myDate.getDate()).slice(-2) + '/' + ('0' + (myDate.getMonth()+2)).slice(-2) + '/' + myDate.getFullYear();
+	
+	document.write(myDateString);
+	
+</script>
