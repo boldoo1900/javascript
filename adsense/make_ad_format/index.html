@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <title>make ad format</title>
+
+  <style type="text/css">
+    /* #dom_q1_1 {
+      position: fixed;
+      display: block; 
+      width: 100%;
+      height: 100px;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 2;
+    }
+
+    #dom_q1_img_1 {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    } */
+
+
+  </style>
+
+</head>
+
+<body>
+  <h1>オーバーレイ広告作成課題</h1>
+  <p><b>ad_tag.js</b>を編集し、オーバーレイ広告を実装しましょう。<br>
+    まずはバナー広告を作成し、その後オーバーレイ広告に改造します。</p>
+  <h1>Q1：バナー広告の追加</h1>
+  <p>バナー広告のDOMを作成しよう。ただし以下の要件を満たすこと。</p>
+  <ul>
+    <li><b>ad_tag.js</b>を呼び出しているスクリプトタグの直後にDOMを追加すること。<ul>
+        <li>ヒント：ad_tag.jsに最初から書かれている<b>getCurrentScript</b>関数を使えば良い。</li>
+      </ul>
+    </li>
+    <li>広告のDOMはdivタグを親要素とし、子要素がaタグ、孫要素がimgタグとなるようにすること。</li>
+    <li>親要素のdivタグには何かしらのidを設定すること。子要素、孫要素へのidの設定は任意とする。</li>
+    <li>画像は<b>ad_320_100.png</b>を使うこと。</li>
+    <li>広告画像のサイズは320px*100pxにすること。</li>
+    <li>広告をクリックした時、<b>新しいタブ</b>で<b>https://geniee.co.jp/</b>を開くこと。</li>
+  </ul>
+  <h1>Q2：オーバーレイ広告への改造</h1>
+  <p>Q1で作ったバナー広告のDOMを操作してオーバーレイ広告に改造しよう。ただし以下の要件を満たすこと。<br>
+    ヒント：ここではQ1で作った広告の親要素のdivタグを主に操作することになるでしょう。
+  </p>
+  <ul>
+    <li>スクロールの状態に関わらず常にページの下部中央にあること。</li>
+    <li>縦幅が広告と同じ高さ、横幅がページの横幅と同一の灰色の背景を追加すること。</li>
+    <li>灰色の背景は広告を除く全ての要素より前面にあること。</li>
+  </ul>
+  <p>以下の画像のようになれば大丈夫です。</p>
+  <img src="banner_sample.png" style="border-style:solid;border-width:2px;" width="99%" height="99%">
+  <h1>Q3：広告の出し分け、機能追加</h1>
+  <p>広告に以下の機能を追加しよう。</p>
+  <ul>
+    <li><b>UserAgent</b>でOSを判断し、iOSかAndroidの場合はオーバーレイ広告、他のOSの場合はバナー広告を表示するようにしよう。
+      <ul>
+        <li>備考：<b>Chrome Dev Tool</b>を使えばiOSとAndroidの擬似環境でページを見れる。UserAgentも変化する。</li>
+      </ul>
+    </li>
+    <li><b>UserAgent</b>でブラウザを判断し、ブラウザがIEの時は広告のDOMを追加せず広告が表示されないように改造しよう。
+      <ul>
+        <li>
+          備考：IEでは<b>document.currentScript</b>が未実装なので<b>getCurrentScript</b>関数が正常に動作しない。なのでIEの場合は<b>getCurrentScript</b>を呼び出すべきでは無い。
+        </li>
+      </ul>
+    </li>
+    <li>オーバーレイ広告の背景の右上にバツボタンを追加しよう。バツボタンを押した時に背景と広告とバツボタンを非表示にすること。</li>
+    <li>バナーの背景を半透明にしよう。</li>
+  </ul>
+  <h1>Ex課題</h1>
+  <p>オーバーレイ広告はまだまだ改造、改良可能なので、余裕のある人は以下の要件を満たすように改造しよう。</p>
+  <ul>
+    <li><b>getCurrentScript</b>をIEでも動作するように改造し、Q3で作ったIEの場合は広告のDOMを追加しない機能を削除すること。
+      <ul>
+        <li>備考：このページの場合はdocument.getElementsByTagName('script')
+          [0]で広告呼び出しタグを取得できる。しかし業務の場合、広告呼び出しタグの上にもscriptタグがある可能性は十分あるのでこのような記述をするべきでは無い。</li>
+        <li>
+          ヒント：loadイベントが発火する前にgetElementsBy〇〇を実行した場合、呼び出したDOMとその上にあるDOMのみ取得可能。例えばad_tag.jsでdocument.getElementsByTagName('h1')を実行した場合、innerHTMLが<b>Ad</b>のh1タグまでは取得できるがすぐ下にあるinnerHTMLが<b>Header</b>のタグは取得できない。
+        </li>
+      </ul>
+    </li>
+    <li>オーバーレイ広告にフェードイン、フローイン機能を追加してアクティブオーバーレイ広告にしよう。フェードインとフロートインの開始タイミングは任意とする。
+      <ul>
+        <li>開始のタイミングはロード後、ロードのn秒後、ページを初めて下にスクロールした時などがある。</li>
+        <li>ヒント：過去の実装では<b>setTimeout</b>関数や<b>setInterval</b>関数を使っている。</li>
+      </ul>
+    </li>
+    <li>上記の他にも思いつく機能があれば実装してみよう。</li>
+  </ul>
+  <h1>Ad</h1>
+  <script type="text/javascript" src="ad_tag.js"></script>
+  <h1>Header</h1>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <h1>Header</h1>
+  <p>sample text sample text</p>
+  <p>sample text sample text</p>
+  <p>sample text sample text</p>
+  <p>sample text sample text</p>
+  <p>sample text sample text</p>
+  <h1>Header</h1>
+  <p>sample text sample text sample text</p>
+  <p>sample text sample text sample text</p>
+  <p>sample text sample text sample text</p>
+  <p>sample text sample text sample text</p>
+  <p>sample text sample text sample text</p>
+  <h1>Header</h1>
+  <p>sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text</p>
+  <h1>Header</h1>
+  <p>sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text</p>
+  <h1>Header</h1>
+  <p>sample text sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text</p>
+  <h1>Header</h1>
+  <p>sample text sample text sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text</p>
+  <h1>Header</h1>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text</p>
+  <h1>Header</h1>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text sample text</p>
+  <h1>Header</h1>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text sample text sample
+    text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text sample text sample
+    text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text sample text sample
+    text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text sample text sample
+    text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text sample text sample
+    text</p>
+  <h1>Header</h1>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text sample text sample
+    text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text sample text sample
+    text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text sample text sample
+    text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text sample text sample
+    text sample text</p>
+  <p>sample text sample text sample text sample text sample text sample text sample text sample text sample text sample
+    text sample text</p>
+  <h1>Header</h1>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <h1>Header</h1>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <h1>Header</h1>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <h1>Header</h1>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <h1>Header</h1>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <h1>Header</h1>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <h1>Header</h1>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <h1>Header</h1>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <h1>Header</h1>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <h1>Header</h1>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <h1>Header</h1>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <h1>Header</h1>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <h1>Header</h1>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <h1>Header</h1>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+  <p>sample text</p>
+</body>
+
+</html>

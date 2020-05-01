@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>JS基礎トレーニング</title>
+  <script src="main.js"></script>
+</head>
+
+<body>
+  <h1>はじめに</h1>
+  <p>このトレーニングでは広告で使いそうなDOMの操作やJSの処理の基礎を学んで行きます。<br>
+    まずは比較的簡単な課題に取り組み、JSに慣れていきましょう。<br>
+    <b>main.js</b>の関数Q1,Q2...を編集し、課題に取り組んでください。</p>
+
+  <h2>Q1：DOM取得</h2>
+  <p>変数<b>dom_q1</b>に下の画像のDOMを代入せよ。<br>
+    また、下の画像の<b>title</b>属性の値をコンソールログに出力せよ。<br>
+    ヒント：document.getElementById()かdocument.getElementsByClassName()でDOMを取得する。○○タグの××属性は○○.××のように取得できる。</p>
+  <img id="id_q1" class="class_q1" src="geniee.jpg" width="128" height="128" title="Genieeロゴ">
+
+  <h2>Q2：DOM操作</h2>
+  <p>下の画像の横のサイズを変更し、縦のサイズと同じにせよ。<br>
+    ヒント：width</p>
+  <img id="dom_q2" src="geniee.jpg" width="2020" height="128">
+
+  <h2>Q3：子要素の取得、操作</h2>
+  <p>下の模擬広告について、以下の要件を満たすようにDOMを書き換えよ。</p>
+  <ul>
+    <li>広告をクリックしたとき、新しいタブで<i>https://geniee.co.jp/</i>を開く。</li>
+    <li>広告画像のサイズは横300px、縦250pxである。</li>
+  </ul>
+  <p>ヒント：○○タグの子要素のリストは○○.childrenで取得できる。</p>
+  <a id="dom_q3" href="https://www.google.com/" target="_blank"><img src="ad_300_250.png" width="128" height="128"></a>
+
+  <h2>Q4：レイアウトの調整</h2>
+  <p>下の文字付き模擬広告について、style属性のみを操作して下の画像と同様のデザインにせよ。<br>
+    ただし、以下の要件を満たすこと。</p>
+  <ul>
+    <li>黒い枠線を引くこと。</li>
+    <li><i>ネットワーク広告の最適化は株式会社ジーニーで！</i>と書かれたpタグ(以下、pタグ1)の文字に下線を引くこと。</li>
+    <li>pタグ1の文字はウィンドウサイズが十分大きい場合、改行しないこと。</li>
+    <li><i>Geniee,Inc.</i>と書かれたpタグ(以下、pタグ2)の文字の大きさを10pxにすること。</li>
+    <li>pタグ2の文字の色を#AAAAAAにすること。</li>
+    <li>pタグ2を画像の所ぐらいまで下に移動させること。</li>
+  </ul>
+  <div id="dom_q4" style="display:inline-block;">
+    <a href="https://geniee.co.jp/" target="_blank" style="text-decoration:none;">
+      <img src="geniee.jpg" style="float:left;" width="128" height="128">
+      <p>ネットワーク広告の最適化は株式会社ジーニーで！</p>
+      <p>Geniee,Inc.</p>
+    </a>
+  </div>
+
+  <p>以下のようになれば良い。(要件を満たしていれば多少違っても大丈夫)</p>
+  <img src="Q4_sample.png" width="99%" height="99%">
+
+  <h2>Q5：子要素の追加</h2>
+  <p>この文の下にある<b>外部リンク</b>の文字を消して代わりに画像を追加し、画像広告を作成せよ。<br>
+    ただし、以下の要件を満たすこと。</p>
+  <ul>
+    <li>画像は<b>geniee.jpg</b>を使用すること。</li>
+    <li>画像のサイズは縦横128pxとすること。</li>
+  </ul>
+  <p>ヒント：document.createElement("××")で××タグを作成できる。○○.appendChild(××)で○○タグの子要素に××タグを追加できる。</p>
+  <a id="dom_q5" href="https://geniee.co.jp/" target="_blank">外部リンク</a>
+
+  <h2>Q6：広告の作成</h2>
+  <p>画像広告を作成せよ。<br>
+    ただし、以下の要件を満たすこと。</p>
+  <ul>
+    <li><b>この下に広告を追加してね</b>と書かれたpタグの直後の要素(子要素ではない)にdivタグを追加すること。</li>
+    <li>divタグのidを<b>dom_q6</b>に設定すること。</li>
+    <li>divタグに子要素を追加して広告にすること。</li>
+    <li>画像は<b>geniee.jpg</b>を使用すること。</li>
+    <li>画像のサイズは縦横128pxとすること。</li>
+    <li>クリックしたときに新しいタブで<b>https://geniee.co.jp/</b>を開けること。</li>
+  </ul>
+  <p>ヒント：parentNode.insertBefore、nextElementSibling</p>
+  <p id="p_q6">この下に広告を追加してね</p>
+
+  <h2>Q7：広告位置の調整</h2>
+  <p>下の画像広告の位置を調整せよ。<br>
+    ただし、以下の要件を満たすこと。</p>
+  <ul>
+    <li><b>style属性のみ</b>を操作すること。</li>
+    <li><b>ウィンドウのサイズに関係なく</b>広告が画面の横中央に位置すること。</li>
+  </ul>
+  <p>ヒント：transformプロパティを使えば画像の中央固定が楽になるかも。</p>
+  <div id="dom_q7">
+    <a href="https://geniee.co.jp/" target="_blank">
+      <img src="ad_320_100.png" width="320" height="100">
+    </a>
+  </div>
+
+  <br><br><br><br><br>
+  <h2>Q8：広告の非表示</h2>
+  <p>下の画像広告の右上にあるバツボタンを押した時、広告を非表示にし、下にある要素を上に詰めよ。<br>
+    ヒント：ボタンにclickイベントを追加する</p>
+  <div id="dom_q8" style="position:relative; width:300px;">
+    <a href="https://geniee.co.jp/" target="_blank"><img src="ad_300_250.png" width="300" height="250"></a>
+    <img src="close.png" style="position: absolute; right: 0px; top: 0px;" width="24" height="24">
+  </div>
+
+  <h2>Q9：OS判定</h2>
+  <p><b>navigator.userAgent</b>(以下、ua)を参照してOSがAndroidかどうかを判定し、OSがAndroid以外の場合は下の画像を非表示にせよ。<br>
+    ヒント：uaの文字列はOSやブラウザによって異なる。例えばOSがAndroidのときに含まれ、そうでなければ含まれない文字列がある。<br>
+    参考：<a href="http://www.openspc2.org/userAgent/" target="_blank">ua一覧</a>、<a
+      href="https://www.plus-a.net/tools/user_agent_list/" target="_blank">ua検索</a><br>
+    参考：開発者ツールでAndroidの表示にすればuaも変わる。
+  </p>
+  <img id="dom_q9" src="geniee.jpg" width="128" height="128">
+
+  <h2>Q10：ブラウザ判定</h2>
+  <p>uaを参照してブラウザを判定し、ブラウザに応じて以下の要件の通りに画像の表示を変えよ。</p>
+  <ul>
+    <li><b>Google Chrome</b>または<b>Microsoft Edge</b>の場合は画像を<b>ad_300_250.png</b>にして縦サイズを300px、横サイズを250pxに変更する。</li>
+    <li><b>Safari</b>または<b>Internet Explorer</b>の場合は画像を非表示にする。</li>
+    <li>上記以外のブラウザの場合は特に何もしない。</li>
+  </ul>
+  <p>参考：Google ChromeのuaにもSafariの文字列が含まれたりするので判定順が重要。EdgeのuaはバージョンとOSによってかなり異なる。</p>
+  <img id="dom_q10" src="ad_320_100.png" width="320" height="100">
+</body>
+
+</html>
