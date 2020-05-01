@@ -1,0 +1,139 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>    <meta charset="utf-8">
+        <title>Drag & Drop</title>
+        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <style type="text/css">
+            .drag-drop-area {
+                display: block;
+                position: relative;
+                overflow: hidden;
+                height: 300px;
+                /*background: url(../images/photo-upload.png) no-repeat center 15% #fff;*/
+                /*background-size: 40% auto;*/
+                border: 3px dashed #4AA966;
+                border-radius: 1.0em;
+                padding: 4% 4% 4% 4%;
+                margin: 0 0 4%;
+            }
+            .drag-drop-area .file {
+                position:absolute;
+                right: 0;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                filter: alpha(opacity=0);
+                cursor: pointer;
+            }
+            .drag-drop-area strong {
+                display: block;
+                color: #4AA966;
+                font-weight: 600;
+                font-size: 2vw;
+            }
+            .drag-drop-area p {
+                display: block;
+                padding: 0.5em 0 0;
+                font-size: 1vw;
+            }
+            .drag-drop-area b {
+                display: none;
+                padding: 0.5em 0 0;
+                font-size: 1vw;
+            }
+            .drag-drop-area a {
+                display: none;
+                width: 30%;
+                float: right;
+                border: 1px solid #C1C1C1;
+                background: #E1E1E1;
+                color: #333;
+                margin: 0.5em 0 0 0;
+                padding: 0.3em 0;
+                border-radius: 0.5em;
+                text-align: center;
+                font-weight: 600;
+                font-size: 2vw;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+
+    <body>
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="drag-drop-area">
+                <a href="" class="remove">解除</a>
+                <input id="file" class="file" type="file" multiple name="FileName[]">
+                <strong>添付ファイルの追加</strong>
+                <p>枠内に添付ファイルをドラッグ&ドロップするか、<br>枠内を押して添付ファイルを選択して下さい。<br>同時に複数ファイルのアップも可能です。</p>					
+                <b></b>
+            </div>
+        </form>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                // file validation
+                $(".drag-drop-area .file").change(function (e) {
+                    const input = e.target;
+                    
+                    if (!input.files.length) {
+                        clearFileInput();
+                        return;
+                    }
+                    if (input.files.length > 100) {
+                        alert('一回でアップロードできる画像は500枚までです。');
+                        return;
+                    }
+
+                    let filenames = [];
+                    let invalidFilesName = [];
+
+                    for (let i = 0; i < input.files.length; i++) {
+                        let file = input.files[i];
+                        filenames.push(file.name);
+                        //if (file.size > 15 * 1024 * 2014) {
+                        if (file.size > 15728640) {
+                            invalidFilesName.push(file.name);
+                        }
+                    }
+
+                    if (invalidFilesName.length) {
+                        alert('ファイルサイズが15MBを超えているため、アップロードできません。: ' + invalidFilesName.join(', '));
+                        clearFileInput();
+                        return;
+                    }
+
+                    $(this).parent("div").find("strong").css('display', 'none');
+                    $(this).parent("div").find("p").css('display', 'none');
+                    $(this).parent("div").find("b").css('display', 'block');
+                    $(this).parent("div").find("a").css('display', 'block');
+                    $(this).css('display', 'none');
+
+                    $(this).parent("div").find("b").html(filenames.join('<br />'));
+                });
+                
+                $('.remove').click(function (e) {
+                    e.preventDefault();
+                    clearFileInput();
+                });
+            });
+
+            function clearFileInput() {
+                let wrap = $('.drag-drop-area');
+                wrap.find("strong").css('display', 'block');
+                wrap.find("p").css('display', 'block');
+                wrap.find("b").css('display', 'none');
+                wrap.find("a").css('display', 'none');
+                wrap.find('input[type="file"]').css('display', 'block').val('');
+            }
+        </script>
+    </body>
+</html>
