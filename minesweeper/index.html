@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>minesweeper</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <span id="panel">
+        <label for="row_count">lines</label> <input type="text" id="row_count" value="0" readonly>
+        <input type="button" value="+" id="row+"> <input type="button" value="-" id="row-"><br/>
+        <label for="col_count">columns</label> <input type="text" id="col_count" value="0" readonly>
+        <input type="button" value="+" id="col+"> <input type="button" value="-" id="col-"><br/>
+        <label for="mine_count">mines</label> <input type="text" id="mine_count" value="0" readonly>
+        <input type="button" value="+" id="mine+"> <input type="button" value="-" id="mine-"><br/>
+        <label for="flag_count">flags</label> <input type="text" id="flag_count" value="0" readonly>
+    </span>
+    <table id="table_body">
+        <tr>
+            <td>
+                <input type="button">
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,21 @@
+.field{
+
+ }
+
+.open{
+    color: white;
+    background-color: black;
+}
+
+.mine{
+    color: red;
+}
+
+.flag{
+    color: green;
+}
+
+.wrong{
+    color: red;             /* 目印のある所に地雷がなければ赤色の `O` に打ち消し線をつけたものする */
+    text-decoration: line-through;
+}
