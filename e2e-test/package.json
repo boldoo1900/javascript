@@ -1,0 +1,22 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "description": "``` npm i puppeteer",
+  "dependencies": {
+    "puppeteer": "^1.6.2"
+  },
+  "devDependencies": {
+    "eslint-plugin-mocha": "^4.11.0",
+    "file-system": "^2.2.2",
+    "jest": "^21.2.1",
+    "js-comments": "^0.5.4",
+    "lodash": "^4.17.13"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
