@@ -3,16 +3,17 @@
   "version": "1.0.0",
   "description": "``` npm i puppeteer",
   "dependencies": {
-    "puppeteer": "^1.6.2",
+    "braces": "^3.0.2",
+    "puppeteer": "^1.20.0",
     "serialize-javascript": "^4.0.0",
     "yargs-parser": "^19.0.4"
   },
   "devDependencies": {
-    "eslint-plugin-mocha": "^4.11.0",
+    "eslint-plugin-mocha": "^4.12.1",
     "file-system": "^2.2.2",
     "jest": "^21.2.1",
     "js-comments": "^0.5.4",
-    "lodash": ">=4.17.19"
+    "lodash": "^4.17.20"
   },
   "main": "index.js",
   "scripts": {
