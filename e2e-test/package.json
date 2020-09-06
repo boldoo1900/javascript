@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "``` npm i puppeteer",
   "dependencies": {
-    "puppeteer": "^1.6.2"
+    "puppeteer": "^1.6.2",
+    "serialize-javascript": "^4.0.0"
   },
   "devDependencies": {
     "eslint-plugin-mocha": "^4.11.0",
