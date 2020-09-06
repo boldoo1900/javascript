@@ -4,7 +4,8 @@
   "description": "``` npm i puppeteer",
   "dependencies": {
     "puppeteer": "^1.6.2",
-    "serialize-javascript": "^4.0.0"
+    "serialize-javascript": "^4.0.0",
+    "yargs-parser": "^19.0.4"
   },
   "devDependencies": {
     "eslint-plugin-mocha": "^4.11.0",
